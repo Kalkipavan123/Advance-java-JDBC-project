@@ -181,11 +181,11 @@ public double gadgetWallet(int gadgetid) throws Throwable {
 }
     public void updateWallet(double res) throws Exception {
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?createDatabaseIfNotExist=true", "root", "123");
+	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2?createDatabaseIfNotExist=true", "root", "123");
 	Statement s=con.createStatement();
-	s.execute("create table if not exists gadgetdetails(id int primary key,gname varchar(45),gbrand varchar(45),price double,warranty int,colour varchar(45))");
+    s.execute("create table if not exists userdata(id int primary key,name varchar(45),email varchar(45),phone bigint,pwd varchar(45),gender varchar(45),address varchar(45),wallet double)");
 	
-	PreparedStatement ps=con.prepareStatement("update gadgetdetils set res=? where s1=?");
+	PreparedStatement ps=con.prepareStatement("update userdata set wallet=? where email=?");
 	ps.setDouble(1, res);
 	ps.setString(2,s1);
 	ps.executeUpdate();
